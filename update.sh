@@ -16,7 +16,8 @@ wget -q -O data.csv "http://data.aishub.net/ws.php?username=${USERNAME}&format=1
 sed -i '/"MMSI"/d' data.csv
 
 # Find all unique MMSIs between new and aggregate data, merging them
-# into a new file (preferring new data). Multiple files are used here
+# into a new file (preferring new data). Thanks to Stack Overflow
+# users markp-fuso & Ed Morton. Multiple files are used here
 # to prevent trying to do too much in memory with large files
 awk -F, '!seen[$1]++' data.csv aggregate.csv > aggregate2.csv
 
