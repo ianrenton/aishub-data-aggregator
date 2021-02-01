@@ -2,8 +2,8 @@
 
 [AIS Hub](https://www.aishub.net/) provides a nice [API](https://www.aishub.net/api) for retrieving its current global data set in a variety of formats, for free if you contribute with your own AIS receiver. Unfortunately, it only maintains a history of the last 30 minutes, so any vessels that have not been received within that time period will not be reported. This data is available from other sources such as MarineTraffic or VesselFinder, but at significant cost.
 
-This script polls the AIS Hub API for its complete data set, and stores it locally in CSV format. When it is next run, it *aggregates* the new data into the old, so the resulting file contains the last known data, even for vessels that have stopped being received. Over multiple runs, the aggregate data set is built up to include the (probable) location of a larger number of vessels than would be returned by a single API call.
+This script polls the AIS Hub API for its complete data set, and stores it locally in CSV format. When it is next run, it *aggregates* the new data into the old, so the resulting file contains the last known data, even for vessels that have stopped being received. Over multiple runs, the aggregate data set is built up to include the (probable) location of a larger number of vessels than would be returned by a single API call. Note that this is limited to the coverage of AIS Hub volunteer receiver stations, and notably doesn't include satellite-based AIS coverage. Therefore it will likely work well for small vessels around ports, but less well for trans-oceanic voyages.
 
-The script is intended to be run as a cron job at 30 minute intervals.
+The script is intended to be run as a cron job at 30 minute intervals, e.g. `*/30 * * * * update.sh`
 
 You must supply your own AIS Hub API username to use this script, so it is only useful for people who are able to run their own AIS receiver and feed the data to AIS Hub, as that is a requirement of membership.
